@@ -8,6 +8,60 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="igor.korobeynikov.Controller">
-</BorderPane>
+<TabPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="igor.korobeynikov.Controller">
+   <tabs>
+      <Tab text="Chat Window">
+         <content>
+            <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0">
+               <center>
+                  <TextArea fx:id="textAreaChat" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="435.0" prefWidth="500.0" wrapText="true" BorderPane.alignment="CENTER" />
+               </center>
+               <bottom>
+                  <HBox prefHeight="34.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <TextField fx:id="messegeField" maxHeight="1.7976931348623157E308" onAction="#messegeFieldAction" prefHeight="43.0" prefWidth="413.0" />
+                        <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="88.0" text="Send" />
+                     </children>
+                  </HBox>
+               </bottom>
+               <top>
+                  <HBox prefHeight="25.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <TextField maxHeight="1.7976931348623157E308" prefHeight="27.0" prefWidth="175.0" promptText="Login" />
+                        <PasswordField maxHeight="1.7976931348623157E308" prefHeight="25.0" prefWidth="175.0" promptText="Password" />
+                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="152.0" text="OK">
+                           <effect>
+                              <Lighting surfaceScale="0.0">
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant color="#9bc416" />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </top>
+            </BorderPane>
+         </content>
+      </Tab>
+      <Tab fx:id="registrationWindow" text="Registration">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="37.0" layoutY="147.0" prefHeight="235.0" prefWidth="410.0" text="Under Constraction">
+                     <font>
+                        <Font size="44.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+   </tabs>
+</TabPane>
