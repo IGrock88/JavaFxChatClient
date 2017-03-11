@@ -17,7 +17,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("mainWindow.fxml"));
         primaryStage.setResizable(false);
         primaryStage.setTitle("Chat client");
-        primaryStage.setScene(new Scene(root, 500, 500));
+        primaryStage.setScene(new Scene(root, 489, 529));
         primaryStage.show();
     }
 }
