@@ -19,5 +19,16 @@ public class Main extends Application {
         primaryStage.setTitle("Chat client");
         primaryStage.setScene(new Scene(root, 489, 529));
         primaryStage.show();
+
     }
+
+    @Override
+    public void stop(){
+        System.out.println("Отключение от сервера");
+        Engine.disconnect();
+    }
+
+
+
+
 }
