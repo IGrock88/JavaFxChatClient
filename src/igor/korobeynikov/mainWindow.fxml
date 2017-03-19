@@ -14,22 +14,22 @@
          <content>
             <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0">
                <center>
-                  <TextArea fx:id="textAreaChat" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="435.0" prefWidth="500.0" wrapText="true" BorderPane.alignment="CENTER" />
+                  <TextArea fx:id="textAreaChat" editable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="276.0" wrapText="true" BorderPane.alignment="CENTER" />
                </center>
                <bottom>
                   <HBox prefHeight="34.0" prefWidth="500.0" BorderPane.alignment="CENTER">
                      <children>
                         <TextField fx:id="messegeField" maxHeight="1.7976931348623157E308" onAction="#messegeFieldAction" prefHeight="43.0" prefWidth="413.0" />
-                        <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="88.0" text="Send" />
+                        <Button fx:id="sendButton" mnemonicParsing="false" onAction="#messegeFieldAction" prefHeight="34.0" prefWidth="117.0" text="Send" />
                      </children>
                   </HBox>
                </bottom>
                <top>
                   <HBox prefHeight="25.0" prefWidth="500.0" BorderPane.alignment="CENTER">
                      <children>
-                        <TextField maxHeight="1.7976931348623157E308" prefHeight="27.0" prefWidth="175.0" promptText="Login" />
-                        <PasswordField maxHeight="1.7976931348623157E308" prefHeight="25.0" prefWidth="175.0" promptText="Password" />
-                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="152.0" text="OK">
+                        <TextField fx:id="loginField" maxHeight="1.7976931348623157E308" prefHeight="31.0" prefWidth="250.0" promptText="Login" />
+                        <PasswordField fx:id="passwordField" maxHeight="1.7976931348623157E308" prefHeight="31.0" prefWidth="250.0" promptText="Password" />
+                        <Button fx:id="okButton" onAction="#authorization" mnemonicParsing="false" prefHeight="31.0" prefWidth="154.0" text="OK">
                            <effect>
                               <Lighting surfaceScale="0.0">
                                  <bumpInput>
@@ -47,6 +47,9 @@
                      </children>
                   </HBox>
                </top>
+               <right>
+                  <TextArea fx:id="userNickArea" editable="false" prefHeight="435.0" prefWidth="102.0" BorderPane.alignment="CENTER" />
+               </right>
             </BorderPane>
          </content>
       </Tab>
@@ -59,6 +62,24 @@
                         <Font size="44.0" />
                      </font>
                   </Label>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab fx:id="optionsWindow" text="Options">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TitledPane animated="false" layoutY="14.0" prefHeight="206.0" prefWidth="500.0" text="Connection options">
+                    <content>
+                      <AnchorPane maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="91.0" prefWidth="498.0">
+                           <children>
+                              <TextField fx:id="serverAdressField" layoutX="14.0" layoutY="14.0" promptText="server ip" text="localhost" />
+                              <TextField fx:id="serverPortField" layoutX="14.0" layoutY="52.0" promptText="Server port" text="8189" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </TitledPane>
                </children>
             </AnchorPane>
         </content>
