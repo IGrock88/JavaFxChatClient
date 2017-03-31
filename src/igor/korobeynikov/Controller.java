@@ -17,7 +17,9 @@ public class Controller {
     public TextField serverPortField;
 
     public void messegeFieldAction(ActionEvent actionEvent) {
-        textAreaChat.appendText("");
+        String message = messegeField.getText();
+        messegeField.setText("");
+        engine.sendMsg(message);
     }
 
 
