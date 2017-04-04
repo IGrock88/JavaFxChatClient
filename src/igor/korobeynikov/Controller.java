@@ -39,7 +39,7 @@ public class Controller {
 
 
     public void authorization(ActionEvent actionEvent) {
-
+        if(!engine.getIsIsAuthorized()) {
             initConnect();
 
             String login = loginField.getText();
@@ -47,7 +47,10 @@ public class Controller {
             if (login.length() != 0 && password.length() != 0) {
                 engine.sendAuthMsg(login, password);
             }
-
+            okButton.setText("Disconnect");
+        } else {
+            okButton.setText("LogIn");
+        }
 
     }
 }
