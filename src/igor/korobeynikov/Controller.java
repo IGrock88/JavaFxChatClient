@@ -15,10 +15,12 @@ public class Controller {
 
     public TextField serverAdressField;
     public TextField serverPortField;
+    public Button disconBut;
 
     public void messegeFieldAction(ActionEvent actionEvent) {
         String message = messegeField.getText();
         engine.sendMsg(message);
+        messegeField.setFocusTraversable(true);
         messegeField.setText("");
     }
 
@@ -47,10 +49,25 @@ public class Controller {
             if (login.length() != 0 && password.length() != 0) {
                 engine.sendAuthMsg(login, password);
             }
-            okButton.setText("Disconnect");
-        } else {
-            okButton.setText("LogIn");
         }
+    }
 
+
+    public void disconnectServer(ActionEvent actionEvent) {
+
+    }
+
+    public void showOrHidenOkAndDisButtons(boolean isAuth){
+        if(isAuth){
+            loginField.setVisible(false);
+            passwordField.setVisible(false);
+            okButton.setVisible(false);
+            disconBut.setVisible(true);
+        } else {
+            loginField.setVisible(true);
+            passwordField.setVisible(true);
+            okButton.setVisible(true);
+            disconBut.setVisible(false);
+        }
     }
 }
