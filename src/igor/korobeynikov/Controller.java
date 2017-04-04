@@ -18,19 +18,20 @@ public class Controller {
 
     public void messegeFieldAction(ActionEvent actionEvent) {
         String message = messegeField.getText();
-        messegeField.setText("");
         engine.sendMsg(message);
+        messegeField.setText("");
     }
-
 
 
 
     public void initConnect() {
         try {
-            String serverAdress = serverAdressField.getText();
-            int port = Integer.parseInt(serverPortField.getText());
+            if(engine == null) {
+                String serverAdress = serverAdressField.getText();
+                int port = Integer.parseInt(serverPortField.getText());
 
-            engine = new Engine(serverAdress, port, this);
+                engine = new Engine(serverAdress, port, this);
+            }
         }catch (NumberFormatException e){
             textAreaChat.appendText("Введен не корректный порт");
         }
@@ -38,15 +39,18 @@ public class Controller {
 
 
     public void authorization(ActionEvent actionEvent) {
-        initConnect();
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        if(!engine.getIsIsAuthorized()) {
+            initConnect();
+
+            String login = loginField.getText();
+            String password = passwordField.getText();
+            if (login.length() != 0 && password.length() != 0) {
+                engine.sendAuthMsg(login, password);
+            }
+            okButton.setText("Disconnect");
+        } else {
+            okButton.setText("LogIn");
         }
-        String login = loginField.getText();
-        String password = passwordField.getText();
-        if(login.length() != 0)
-            engine.sendAuthMsg(login, password);
+
     }
 }
