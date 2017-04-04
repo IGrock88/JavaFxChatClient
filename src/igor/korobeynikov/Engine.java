@@ -76,6 +76,7 @@ public class Engine {
                             if (str.equals("775588")) {
                                 setIsAuthorized(true);
                                 controller.textAreaChat.appendText("Вы авторизованы\n");
+                                controller.showOrHidenOkAndDisButtons(true);
                                 inputMsg();
                                 break;
                             }
@@ -106,6 +107,7 @@ public class Engine {
                         if (str.startsWith("/")) {
                             if (str.equals("/end885577")) {
                                 controller.textAreaChat.setText("Отключение от сервера");
+                                controller.showOrHidenOkAndDisButtons(false);
                                 disconnect();
                                 break;
                             }
