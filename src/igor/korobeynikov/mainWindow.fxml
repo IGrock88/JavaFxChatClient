@@ -29,7 +29,7 @@
                      <children>
                         <TextField fx:id="loginField" maxHeight="1.7976931348623157E308" prefHeight="31.0" prefWidth="250.0" promptText="Login" />
                         <PasswordField fx:id="passwordField" maxHeight="1.7976931348623157E308" prefHeight="31.0" prefWidth="250.0" promptText="Password" />
-                        <Button fx:id="okButton" mnemonicParsing="false" onAction="#authorization" prefHeight="31.0" prefWidth="154.0" text="OK">
+                        <Button fx:id="okButton" mnemonicParsing="false" onAction="#authorization" prefHeight="31.0" prefWidth="154.0" text="LogIn">
                            <effect>
                               <Lighting surfaceScale="0.0">
                                  <bumpInput>
@@ -50,8 +50,7 @@
                <right>
                   <VBox>
                      <children>
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" text="Disconect" />
-                        <TextArea fx:id="userNickArea" editable="false" prefHeight="413.0" prefWidth="102.0" BorderPane.alignment="CENTER" />
+                        <TextArea fx:id="userNickArea" editable="false" prefHeight="437.0" prefWidth="102.0" BorderPane.alignment="CENTER" />
                      </children>
                   </VBox>
                </right>
