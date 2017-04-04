@@ -50,6 +50,7 @@
                <right>
                   <VBox>
                      <children>
+                        <Button onAction="#disconnectServer" fx:id="disconBut" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" text="Disconnect" visible="false" />
                         <TextArea fx:id="userNickArea" editable="false" prefHeight="437.0" prefWidth="102.0" BorderPane.alignment="CENTER" />
                      </children>
                   </VBox>
