@@ -12,13 +12,12 @@ import static igor.korobeynikov.Controller.*;
 
 public class Engine {
 
-    private String serverAdress;
-    private int serverPort;
+    private static String serverAdress;
+    private static int serverPort;
     private static Socket sock;
     private static DataInputStream in;
     private static DataOutputStream out;
     private static boolean isAuthorized;
-    private static boolean flag = false;
     private static ExecutorService executorService = Executors.newFixedThreadPool(100);;
     private static Controller controller;
 
@@ -26,14 +25,20 @@ public class Engine {
         Engine.isAuthorized = isAuthorized;
     }
 
+    public static boolean getIsIsAuthorized() {
+        return isAuthorized;
+    }
+
     public Engine(String serverAdress, int serverPort, Controller controller) {
         this.serverAdress = serverAdress;
         this.serverPort = serverPort;
+
         this.controller = controller;
+
         connect();
     }
 
-    public void connect(){
+    public static void connect(){
         try {
             sock = new Socket(serverAdress, serverPort);
             in = new DataInputStream(sock.getInputStream());
@@ -47,32 +52,39 @@ public class Engine {
     public static void disconnect(){
         executorService.shutdown();
         try {
-
             if(in != null) in.close();
             if(out != null) out.close();
-            if(sock != null) sock.close();
+            if(sock != null) {
+                sock.close();
+                sock = null;
+            }
+
         } catch (IOException e){
             e.printStackTrace();
         }
 
     }
 
-    public void inputAuthMsg(){
+    public static void inputAuthMsg(){
         executorService.execute(new Runnable() {
             @Override
             public void run() {
                 try {
                     while (true) {
-                        String str = in.readUTF();
-                        if (str.equals("775588")) {
-                            setIsAuthorized(true);
-                            controller.textAreaChat.appendText("Вы авторизованы\n");
-                            inputMsg();
-                            break;
-                        }
-                        if (str != null) {
-                            controller.textAreaChat.appendText(str);
-                            controller.textAreaChat.appendText("\n");
+                        if(controller != null) {
+                            String str = in.readUTF();
+                            if (str.equals("775588")) {
+                                setIsAuthorized(true);
+                                controller.textAreaChat.appendText("Вы авторизованы\n");
+                                inputMsg();
+                                break;
+                            }
+
+                            if (str != null) {
+                                controller.textAreaChat.appendText(str);
+                                controller.textAreaChat.appendText("\n");
+                            }
+
                         }
                     }
 
@@ -83,18 +95,21 @@ public class Engine {
         });
     }
 
-    public void inputMsg() {
+    public static void inputMsg() {
         executorService.execute(new Runnable() {
             @Override
             public void run() {
                 while (true) {
                     try {
-                        if(!isAuthorized){
 
-                            break;
-                        }
                         String str = in.readUTF();
                         if (str.startsWith("/")) {
+                            if (str.equals("/end885577")) {
+                                controller.textAreaChat.setText("Отключение от сервера");
+                                disconnect();
+                                break;
+                            }
+
                             if (str.startsWith("/users ")) {
                                 String[] u = str.split(" ");
                                 controller.userNickArea.setText("");
@@ -108,7 +123,8 @@ public class Engine {
                             controller.textAreaChat.appendText(str);
                             controller.textAreaChat.appendText("\n");
                         }
-                    }catch (IOException e){
+
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
@@ -116,7 +132,7 @@ public class Engine {
         });
     }
 
-    public void sendAuthMsg(String login, String pass) {
+    public static void sendAuthMsg(String login, String pass) {
         try {
             String a = "/auth " + login + " " + pass;
             System.out.println(a);
@@ -124,10 +140,11 @@ public class Engine {
             out.flush();
         } catch (IOException e) {
             controller.textAreaChat.appendText("Ошибка авторизации");
+
         }
     }
 
-    public void sendMsg(String message){
+    public static void sendMsg(String message){
         try {
             out.writeUTF(message);
             out.flush();
